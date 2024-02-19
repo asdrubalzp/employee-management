@@ -1,0 +1,7 @@
+@import "primeicons/primeicons.css";
+body {
+  font-family: var(--font-family);
+}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

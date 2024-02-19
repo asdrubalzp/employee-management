@@ -1,0 +1,129 @@
+<p-dialog
+  [(visible)]="displayDialog"
+  [header]="isEditing ? 'Edit person' : 'Add person'"
+  [style]="{ width: '50%' }"
+  [draggable]="false"
+  [modal]="true"
+  styleClass="p-fluid"
+  (onHide)="hideDialog()"
+>
+  <ng-template pTemplate="content">
+    <div class="field">
+      <label for="name">Name</label>
+      <input
+        type="text"
+        pInputText
+        id="name"
+        [(ngModel)]="personModel.name"
+        required
+        maxlength="60"
+        autofocus
+      />
+      <small class="p-error" *ngIf="submitted && !personModel.name"
+        >Name is required.</small
+      >
+    </div>
+
+    <div class="field">
+      <label for="name">Last name</label>
+      <input
+        type="text"
+        pInputText
+        id="lastName"
+        [(ngModel)]="personModel.lastName"
+        required
+        maxlength="100"
+        autofocus
+      />
+      <small class="p-error" *ngIf="submitted && !personModel.lastName"
+        >LastName is required.</small
+      >
+    </div>
+    <div class="field">
+      <label for="email">Email</label>
+      <input
+        type="email"
+        pInputText
+        autocapitalize
+        id="email"
+        [(ngModel)]="personModel.email"
+        required
+        email
+        maxlength="60"
+        autofocus
+      />
+      <small class="p-error" *ngIf="submitted && !personModel.email">
+        Email is required.
+      </small>
+      <small
+        class="p-error"
+        *ngIf="
+          submitted && personModel.email && !isValidEmail(personModel.email)
+        "
+      >
+        Invalid email format.
+      </small>
+      <small
+        class="p-error"
+        *ngIf="submitted && personModel.email && personModel.email.length > 60"
+      >
+        Email must be at most 60 characters long.
+      </small>
+    </div>
+
+    <div class="field">
+      <label for="salary">Salary</label>
+      <p-inputNumber
+        id="salary"
+        [(ngModel)]="personModel.salary"
+        [min]="0"
+        [required]="true"
+        autofocus
+        mode="currency"
+        currency="USD"
+      >
+      </p-inputNumber>
+
+      <small class="p-error" *ngIf="submitted && !personModel.salary">
+        Salary is required.
+      </small>
+    </div>
+
+    <div class="field">
+      <label for="dateOfBirth">Date of Birth</label>
+      <p-calendar
+        [(ngModel)]="personModel.birthDate"
+        appendTo="body"
+        dateFormat="yy-mm-dd"
+        [minDate]="minDate"
+        [maxDate]="maxDate"
+        [panelStyle]="{ width: '10%', heigth: '10%' }"
+        [inputStyle]="{ width: '10%', heigth: '10%' }"
+      ></p-calendar>
+
+      <small class="p-error" *ngIf="submitted && !personModel.birthDate">
+        Date of Birth is required.
+      </small>
+    </div>
+  </ng-template>
+
+  <ng-template pTemplate="footer">
+    <button
+      pButton
+      pRipple
+      label="Cancel"
+      icon="pi pi-times"
+      class="p-button-text"
+      (click)="hideDialog()"
+    ></button>
+    <button
+      pButton
+      pRipple
+      label="Save"
+      icon="pi pi-check"
+      class="p-button-text"
+      [disabled]="!isFormValid()"
+      (click)="savePerson()"
+    ></button>
+  </ng-template>
+</p-dialog>

@@ -1,0 +1,40 @@
+/* sidebar.component.css */
+
+.sidebar-header {
+  text-align: center;
+  padding: 20px;
+  border-bottom: 1px solid #ccc;
+}
+
+.navigation-menu {
+  list-style: none;
+  padding: 0;
+}
+
+.navigation-menu li {
+  margin-bottom: 10px;
+}
+
+.navigation-menu li a {
+  display: block;
+  padding: 10px;
+  color: #333;
+  text-decoration: none;
+  border-radius: 5px;
+}
+
+.navigation-menu li a:hover {
+  background-color: #f0f0f0;
+}
+
+.active {
+  background-color: #007bff;
+  color: #fff;
+}
+
+/* .sidebar-toggler {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+} */

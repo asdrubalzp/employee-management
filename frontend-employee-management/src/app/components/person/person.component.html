@@ -1,0 +1,106 @@
+<p-toolbar styleClass="mb-9 gap-2">
+  <ng-template pTemplate="left">
+    <button
+      pButton
+      pRipple
+      label="New"
+      icon="pi pi-plus"
+      class="p-button-success mr-2"
+      (click)="openNew()"
+    ></button>
+  </ng-template>
+</p-toolbar>
+
+<p-table
+  #dt
+  [value]="persons"
+  [rows]="10"
+  [paginator]="true"
+  [globalFilterFields]="['name', 'lastName', 'salary', 'email']"
+  [tableStyle]="{ 'min-width': '60rem' }"
+  [(selection)]="selectedPerson"
+  [rowHover]="true"
+  dataKey="id"
+  currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+  [showCurrentPageReport]="true"
+>
+  <ng-template pTemplate="caption">
+    <div class="flex align-items-center justify-between">
+      <h5 class="m-0">Manage Persons</h5>
+      <span class="p-input-icon-left">
+        <i class="pi pi-search"></i>
+        <input
+          pInputText
+          type="text"
+          [(ngModel)]="seachText"
+          (input)="dt.filterGlobal(seachText, 'contains')"
+          placeholder="Search..."
+        />
+      </span>
+    </div>
+  </ng-template>
+  <ng-template pTemplate="header">
+    <tr>
+      <th pSortableColumn="name">
+        Name <p-sortIcon field="name"></p-sortIcon>
+      </th>
+      <th pSortableColumn="lastName">
+        LastName <p-sortIcon field="lastName"></p-sortIcon>
+      </th>
+
+      <th pSortableColumn="salary">
+        Salary <p-sortIcon field="salary"></p-sortIcon>
+      </th>
+
+      <th pSortableColumn="email">
+        Email <p-sortIcon field="email"></p-sortIcon>
+      </th>
+
+      <th pSortableColumn="birthDate">
+        Birth Date <p-sortIcon field="birthDate"></p-sortIcon>
+      </th>
+      <th></th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-person>
+    <tr>
+      <td>{{ person.name }}</td>
+      <td>
+        {{ person.lastName }}
+      </td>
+      <td>{{ person.salary | currency : "USD" }}</td>
+      <td>{{ person.email }}</td>
+      <td>{{ person.birthDate | date : "yyyy-MM-dd" }}</td>
+
+      <td>
+        <button
+          pButton
+          pRipple
+          icon="pi pi-pencil"
+          class="p-button-rounded p-button-success mr-2"
+          (click)="editProduct(person)"
+        ></button>
+        <button
+          pButton
+          pRipple
+          icon="pi pi-trash"
+          class="p-button-rounded p-button-warning"
+          (click)="deleteProduct(person.id)"
+        ></button>
+      </td>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="summary">
+    <div class="flex align-items-center justify-content-between">
+      In total there are {{ persons ? persons.length : 0 }} persons.
+    </div>
+  </ng-template>
+</p-table>
+<app-person-dialog
+  [personModel]="personModel"
+  [displayDialog]="personDialog"
+  [isEditing]="isEditing"
+  (displayDialogChange)="personDialog = $event"
+  (personAdded)="handlePersonAdded($event)"
+  (personEdited)="handlePersonEdited($event)"
+></app-person-dialog>

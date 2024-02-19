@@ -1,0 +1,21 @@
+/* app.component.css */
+.container {
+  display: flex;
+  height: 100vh;
+}
+
+.app-sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 250px; /* ajusta el ancho según sea necesario */
+  background-color: #f2f2f2; /* ajusta el color de fondo según sea necesario */
+}
+
+.content {
+  flex: 1;
+  margin-left: 400px; /* ajusta el margen izquierdo según el ancho del sidebar */
+  padding: 20px;
+  overflow-y: auto; /* Añade un scrollbar vertical si el contenido es más largo que el área visible */
+}

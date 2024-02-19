@@ -1,0 +1,24 @@
+<p-sidebar
+  class="sidebar"
+  [visible]="true"
+  [modal]="false"
+  [showCloseIcon]="true"
+  [dismissible]="true"
+>
+  <div class="sidebar-header">
+    <h3>Employee Management</h3>
+  </div>
+  <ul class="navigation-menu">
+    <li>
+      <a routerLink="/persons" routerLinkActive="active"
+        ><i class="pi pi-users"></i> Persons</a
+      >
+    </li>
+
+    <li>
+      <a routerLink="/about" routerLinkActive="active"
+        ><i class="pi pi-info-circle"></i> About</a
+      >
+    </li>
+  </ul>
+</p-sidebar>

@@ -1,0 +1,29 @@
+# IntelliJ IDEA
+backend-employee-management/.idea/
+backend-employee-management/*.iml
+backend-employee-management/out/
+
+# Spring Boot
+backend-employee-management/target/
+backend-employee-management/build/
+
+# Visual Studio Code
+frontend-employee-management/.vscode/
+frontend-employee-management/.history/
+
+# Node.js / npm
+frontend-employee-management/node_modules/
+frontend-employee-management/npm-debug.log
+frontend-employee-management/yarn-error.log
+frontend-employee-management/.angular/cache/
+
+# Compiled TypeScript
+frontend-employee-management/dist/
+frontend-employee-management/tmp/
+frontend-employee-management/out-tsc/
+
+# macOS
+**/.DS_Store
+
+# Windows
+Thumbs.db
